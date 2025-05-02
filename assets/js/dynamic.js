@@ -1,13 +1,12 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    
+    // Animation de chargement (main fade-in)
     const main = document.querySelector('main');
     if (main) {
         main.classList.add('visible');
     }
 
-    
+    // Gestion des boutons "Voir plus"
     const toggleButtons = document.querySelectorAll(".project .toggle-details");
 
     toggleButtons.forEach(btn => {
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
+    // Galerie d'images : clique sur miniatures
     const galleryImages = document.querySelectorAll(".gallery-thumbs img");
     const mainImage = document.querySelector(".gallery-main img");
 
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    
+    // Validation formulaire
     const form = document.querySelector("form");
     if (form) {
         const emailInput = form.querySelector('input[type="email"]');
@@ -52,15 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
             messageInput.addEventListener("input", validate);
         }
     }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+    // === Gestion du menu mobile ===
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("nav-links");
 
-    hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-    });
+    if (hamburger && navLinks) {
+        // Toggle menu
+        hamburger.addEventListener("click", (e) => {
+            navLinks.classList.toggle("show");
+            e.stopPropagation(); // Stopper propagation du clic sur le bouton
+        });
+
+        // Fermer le menu si on clique en dehors
+        document.addEventListener("click", (e) => {
+            if (navLinks.classList.contains("show") && !navLinks.contains(e.target) && e.target !== hamburger) {
+                navLinks.classList.remove("show");
+            }
+        });
+    }
 });
-
-
