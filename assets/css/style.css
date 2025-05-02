@@ -461,3 +461,42 @@ footer:hover {
     transform: scale(1.05);
 }
 
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #004080;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+}

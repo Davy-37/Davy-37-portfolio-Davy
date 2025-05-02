@@ -1,13 +1,13 @@
-// Quand la page est entièrement chargée
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    // === 1️⃣ Animation principale : rendre le <main> visible ===
+    
     const main = document.querySelector('main');
     if (main) {
         main.classList.add('visible');
     }
 
-    // === 2️⃣ Projet : détails supplémentaires au clic ===
+    
     const toggleButtons = document.querySelectorAll(".project .toggle-details");
 
     toggleButtons.forEach(btn => {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // === 3️⃣ Galerie d'images : changer l'image principale ===
+
     const galleryImages = document.querySelectorAll(".gallery-thumbs img");
     const mainImage = document.querySelector(".gallery-main img");
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // === 4️⃣ Validation de formulaire : activer le bouton seulement si valide ===
+    
     const form = document.querySelector("form");
     if (form) {
         const emailInput = form.querySelector('input[type="email"]');
@@ -52,4 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
             messageInput.addEventListener("input", validate);
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
 });
