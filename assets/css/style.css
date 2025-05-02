@@ -500,3 +500,46 @@ footer:hover {
         display: flex;
     }
 }
+
+
+/* Logo (on le masque si tu n’en veux pas vraiment) */
+.logo {
+    display: none;
+}
+
+/* Hamburger : par défaut caché sur grand écran */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Menu standard : affiché en desktop */
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mobile : on affiche le hamburger et on cache la barre classique */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #004080;
+        padding: 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+}
