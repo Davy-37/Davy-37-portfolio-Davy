@@ -602,3 +602,26 @@ nav ul {
         display: flex;
     }
 }
+
+
+nav ul {
+    display: flex; /* desktop */
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* caché par défaut */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #004080;
+    }
+
+    nav ul.show {
+        display: flex; /* quand show est activé */
+    }
+}
