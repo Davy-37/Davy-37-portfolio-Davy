@@ -485,3 +485,73 @@ a:hover {
     font-size: 1.1em;
     white-space: nowrap;
 }
+
+/* Sections */
+main section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #f0f4f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Titres */
+main section h2 {
+    color: #004080;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #004080;
+    padding-bottom: 5px;
+}
+
+/* Tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #004080;
+    color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Brand (Nom + Photo) */
+.brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.brand img:hover {
+    transform: scale(1.05);
+}
+
+.brand span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    white-space: nowrap;
+}
+

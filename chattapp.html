@@ -2,60 +2,99 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ChattApp - Davy NZIENGUI</title>
+    <title>Application de Chat - ChattApp</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <ul id="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="about.html">À propos</a></li>
-                <li><a href="projects.html">Projets</a></li>
-                <li><a href="skills.html">Compétences</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-    
-            <a href="index.html" class="brand">
-                <span>Davy NZIENGUI</span>
-                <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
-            </a>
-    
-            <div class="hamburger" id="hamburger">&#9776;</div>
-        </div>
-    </nav>
-
-    <main>
-        <h1>ChattApp : Application de Chat avec Django</h1>
-        <p><strong>Description :</strong> ChattApp est une application web interactive permettant la communication en temps réel entre utilisateurs. Le backend est développé en Django, avec une interface utilisateur en HTML, CSS, et JavaScript.</p>
-
-        <h2>Fonctionnalités principales :</h2>
-        <ul>
-            <li>Inscription & Connexion sécurisée</li>
-            <li>Envoi/Réception de messages en temps réel</li>
-            <li>Création de salons de discussion</li>
-            <li>Responsive design</li>
+<nav>
+    <div class="nav-container">
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="projects.html">Projets</a></li>
+            <li><a href="skills.html">Compétences</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
+        <a href="index.html" class="brand">
+            <span>Davy NZIENGUI</span>
+            <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
+        </a>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+</nav>
 
-        <h2>Technologies utilisées :</h2>
+<main>
+    <h1>Application de Chat - ChattApp</h1>
+
+    <section>
+        <h2>Présentation du Projet</h2>
+        <p>ChattApp est une <strong>application web interactive</strong> permettant aux utilisateurs de discuter en temps réel dans un environnement sécurisé. Conçue pour être intuitive, rapide et extensible, elle intègre les meilleures pratiques du développement web moderne.</p>
+    </section>
+
+    <section>
+        <h2>Objectifs du Projet</h2>
+        <p>Le but principal de ChattApp est d’offrir une solution légère de messagerie instantanée accessible depuis n'importe quel appareil. Le projet vise à :</p>
         <ul>
-            <li>Django (Python)</li>
-            <li>HTML/CSS/JavaScript</li>
-            <li>WebSockets (Django Channels)</li>
-            <li>SQLite/PostgreSQL</li>
+            <li>Faciliter les échanges entre utilisateurs avec une interface simple et claire ;</li>
+            <li>Garantir la confidentialité des messages via des mécanismes d'authentification et de protection des données ;</li>
+            <li>Permettre l’évolution de la plateforme (ajout de groupes, pièces jointes, notifications...).</li>
         </ul>
+    </section>
 
-        <div class="project-image">
-            <img src="assets/images/chattapp_logo.jpg" alt="Capture ChattApp">
-        </div>
-    </main>
+    <section>
+        <h2>Technologies utilisées</h2>
+        <p>Le projet repose sur les technologies suivantes :</p>
+        <ul>
+            <li><strong>Back-end :</strong> Django (Python) avec Django Channels pour la gestion des websockets (chat en temps réel) ;</li>
+            <li><strong>Front-end :</strong> HTML, CSS, JavaScript ;</li>
+            <li><strong>Base de données :</strong> Gestion via l’ORM intégré de Django (le moteur par défaut est SQLite en développement, extensible vers PostgreSQL/MySQL facilement grâce à Django ORM) ;</li>
+            <li><strong>Outils :</strong> GitHub pour la gestion de version, Visual Studio Code.</li>
+        </ul>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
-    </footer>
+    <section>
+        <h2>Fonctionnalités clés</h2>
+        <ul>
+            <li>Inscription & Authentification sécurisée ;</li>
+            <li>Chat en temps réel grâce aux websockets ;</li>
+            <li>Historique des messages ;</li>
+            <li>Design responsive et moderne pour une utilisation sur ordinateur et mobile.</li>
+        </ul>
+    </section>
 
-    <script src="assets/js/dynamic.js"></script>
+    <section>
+        <h2>Développement informatique (Django & Python)</h2>
+        <p>Le projet a été intégralement développé en <strong>Python avec Django</strong>. Django a été choisi pour sa robustesse et son écosystème mature. Voici quelques points clés du développement :</p>
+        <ul>
+            <li>Création des modèles (Users, Messages) et gestion de la base relationnelle ;</li>
+            <li>Utilisation de Django Channels pour la communication temps réel (WebSocket) ;</li>
+            <li>Authentification sécurisée avec gestion des sessions et middleware personnalisés ;</li>
+            <li>Gestion des erreurs et validations côté serveur et client.</li>
+        </ul>
+        <p>Ce projet a permis d’approfondir des compétences en <strong>temps réel</strong>, en gestion d’événements WebSocket, et en sécurité web.</p>
+    </section>
+
+
+    <section>
+        <h2>Conclusion & Perspectives</h2>
+        <p>ChattApp a posé les bases d'une plateforme de communication performante. Pour les futures améliorations :</p>
+        <ul>
+            <li>Intégration des groupes de discussion ;</li>
+            <li>Système de notifications par e-mail ou push ;</li>
+            <li>Chiffrement de bout en bout ;</li>
+            <li>Déploiement en production.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
+</footer>
+
+<script src="assets/js/dynamic.js"></script>
 </body>
 </html>
