@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Étude Mathématique des Algorithmes de Recommandation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="projects.html">Projets</a></li>
+            <li><a href="skills.html">Compétences</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="index.html" class="brand">
+            <span>Davy NZIENGUI</span>
+            <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
+        </a>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+</nav>
+
+<main>
+    <h1>Étude Mathématique et Développement Informatique des Algorithmes de Recommandation</h1>
+
+    <section>
+        <h2>Présentation du Projet</h2>
+        <p>Ce projet a combiné une <strong>approche mathématique approfondie</strong> avec une <strong>réalisation informatique avancée</strong> en Python. L'objectif était de simuler un essai clinique utilisant différentes stratégies d'algorithmes de recommandation pour comparer leur efficacité sur un grand nombre de patients.</p>
+    </section>
+
+    <section>
+        <h2>Implémentation Informatique</h2>
+        <p>Le cœur de ce projet repose sur le développement Python :</p>
+        <ul>
+            <li>Construction <strong>modulaire du code</strong> permettant la flexibilité des simulations.</li>
+            <li>Utilisation de bibliothèques <strong>scientifiques</strong> (<code>numpy</code>, <code>matplotlib</code>, <code>scipy</code>) pour la modélisation statistique et les calculs mathématiques.</li>
+            <li><strong>Visualisation des résultats</strong> via des graphiques pour interpréter les performances de chaque stratégie.</li>
+            <li>Mise en œuvre de méthodes robustes :
+                <ul>
+                    <li>Estimation bayésienne (Thompson Sampling).</li>
+                    <li>Approche MLE (Maximum de vraisemblance).</li>
+                    <li>Gestion des marges d'erreur avec l'inégalité de Hoeffding.</li>
+                    <li>Comparaison avec la stratégie uniforme de référence.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>Chaque stratégie a été codée et testée <strong>dans un environnement de simulation automatisée</strong>, avec analyse comparative des performances.</p>
+    </section>
+
+    <section>
+        <h2>Visualisations des Résultats</h2>
+
+        <h3>Distributions des probabilités estimées</h3>
+        <p><strong>Bayésienne</strong></p>
+        <img src="assets/images/distribution_bayesienne.png" alt="Distribution bayésienne">
+
+        <p><strong>Hoeffding</strong></p>
+        <img src="assets/images/distribution_hoeffding.png" alt="Distribution hoeffding">
+
+        <p><strong>MLE</strong></p>
+        <img src="assets/images/distribution_MLE.png" alt="Distribution MLE">
+
+        <p><strong>Uniforme</strong></p>
+        <img src="assets/images/distribution_uniforme.png" alt="Distribution uniforme">
+
+        <h3>Estimations des probabilités d'efficacité</h3>
+        <p><strong>Bayésienne</strong></p>
+        <img src="assets/images/estimations_bayesienne.png" alt="Estimations bayésienne">
+
+        <p><strong>Hoeffding</strong></p>
+        <img src="assets/images/estimations_hoeffding.png" alt="Estimations hoeffding">
+
+        <p><strong>MLE</strong></p>
+        <img src="assets/images/estimations_MLE.png" alt="Estimations MLE">
+
+        <p><strong>Uniforme</strong></p>
+        <img src="assets/images/estimations_uniforme.png" alt="Estimations uniforme">
+    </section>
+
+    <section>
+        <h2>Analyse & Conclusion</h2>
+        <p>Les simulations informatiques ont permis de tirer des enseignements clés :</p>
+        <ul>
+            <li><strong>Uniforme</strong> : simple mais peu performant, servant de référence minimale.</li>
+            <li><strong>MLE</strong> : efficace à long terme mais vulnérable en début d'essai.</li>
+            <li><strong>Hoeffding</strong> : ajoute de la robustesse grâce aux marges d’erreur, idéal pour des essais sécurisés.</li>
+            <li><strong>Thompson Sampling (Bayésien)</strong> : méthode la plus équilibrée, optimisant à la fois exploration et exploitation grâce à une approche probabiliste dynamique.</li>
+        </ul>
+        <p>Cette étude montre l'importance de <strong>l'intégration de la science des données et de la programmation</strong> pour traiter des problématiques complexes comme les essais cliniques, en automatisant l'analyse et en fournissant des visualisations pertinentes.</p>
+    </section>
+
+    <section>
+        <h2>Code Source</h2>
+        <p>Le code Python développé pour cette étude est disponible sur demande.</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
+</footer>
+
+<script src="assets/js/dynamic.js"></script>
+</body>
+</html>
