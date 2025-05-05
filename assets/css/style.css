@@ -1,4 +1,4 @@
-/* ===== BASE ===== */
+/*   BASE   */
 body {
     margin: 0;
     font-family: 'Open Sans', Arial, sans-serif;
@@ -7,7 +7,7 @@ body {
     scroll-behavior: smooth;
 }
 
-/* ===== NAV BAR ===== */
+/*   NAV BAR   */
 nav {
     background: #004080;
     padding: 0 20px;
@@ -48,7 +48,7 @@ nav ul li a:hover {
     color: #00bfff;
 }
 
-/* ===== MAIN ===== */
+/*   MAIN   */
 main {
     max-width: 1000px;
     margin: 40px auto;
@@ -66,7 +66,7 @@ main h1 {
     letter-spacing: 1px;
 }
 
-/* ===== PROJETS ===== */
+/*   PROJETS   */
 .project {
     display: flex;
     align-items: center;
@@ -100,7 +100,7 @@ main h1 {
     transform: scale(1.03);
 }
 
-/* ===== FOOTER ===== */
+/*   FOOTER   */
 footer {
     text-align: center;
     padding: 20px;
@@ -114,7 +114,7 @@ footer:hover {
     background: #003366;
 }
 
-/* ===== FORMULAIRE ===== */
+/*   FORMULAIRE   */
 form {
     max-width: 600px;
     margin: auto;
@@ -158,7 +158,7 @@ form button:hover {
     transform: translateY(-2px);
 }
 
-/* ===== HERO SECTION ===== */
+/*   HERO SECTION   */
 .hero-content {
     display: flex;
     align-items: center;
@@ -201,7 +201,7 @@ form button:hover {
     transform: translateY(-2px);
 }
 
-/* ===== MENU MOBILE ===== */
+/*   MENU MOBILE   */
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -234,7 +234,7 @@ form button:hover {
     }
 }
 
-/* ===== COMPETENCES ===== */
+/*   COMPETENCES   */
 .skills-category {
     margin-bottom: 40px;
     padding: 20px;
@@ -279,7 +279,7 @@ form button:hover {
     transition: width 1s ease;
 }
 
-/* ===== IMAGES (Amélioré) ===== */
+/*   IMAGES (Amélioré)   */
 .project-image img,
 .school-image img,
 .hero-image img {
@@ -303,7 +303,7 @@ form button:hover {
 }
 
 
-/* ===== SCHOOLS SECTION ===== */
+/*   SCHOOLS SECTION   */
 .school {
     display: flex;
     align-items: center;
@@ -348,7 +348,7 @@ form button:hover {
     }
 }
 
-/* ===== PAGE PROJET DÉTAILLÉE ===== */
+/*   PAGE PROJET DÉTAILLÉE   */
 .project-detail {
     max-width: 1000px;
     margin: 40px auto;
@@ -406,7 +406,7 @@ form button:hover {
     }
 }
 
-/* ===== LIENS (Style global) ===== */
+/*   LIENS (Style global)   */
 a {
     color: #004080; /* Bleu foncé cohérent avec le reste */
     text-decoration: none; /* Retire le soulignement par défaut */
