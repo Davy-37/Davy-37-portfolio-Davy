@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Détection d’Avions sur Imagerie Satellite (PlanesNet) — Étude & Implémentations</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+  <meta name="description" content="Projet de classification d’images satellites (PlanesNet) : CNN, KNN, Naive Bayes, Arbre de Décision, KMeans, Clustering hiérarchique, Séries temporelles. Résultats, visualisations et code open-source." />
+  <style>
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .results-grid figure {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .results-grid figure:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .results-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .results-grid figcaption {
+      font-size: 0.95rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <ul id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="projects.html" class="active">Projets</a></li>
+        <li><a href="skills.html">Compétences</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="index.html" class="brand">
+        <span>Davy NZIENGUI</span>
+        <img src="assets/images/portrait.jpg" alt="Portrait de Davy NZIENGUI" />
+      </a>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-hero">
+      <h1>Détection d’Avions sur Imagerie Satellite (PlanesNet)</h1>
+      <p class="subtitle">De la classification supervisée aux analyses non-supervisées et séries temporelles</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">PyTorch / scikit-learn</span>
+        <span class="tag">Vision par ordinateur</span>
+        <span class="tag">MLOps léger</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Présentation du Projet</h2>
+      <p>
+        Ce projet applique plusieurs méthodes d’apprentissage automatique pour <strong>détecter la présence d’avions</strong> dans des images satellites
+        issues du dataset <em>Planes in Satellite Imagery (PlanesNet)</em>. Les images (20×20 RGB) sont labellisées <code>plane</code> ou <code>no-plane</code> et
+        sont également fournies en JSON (vecteurs de 1200 pixels). L’objectif est double : (1) construire un <strong>socle de modèles supervisés</strong> (CNN, KNN,
+        Naive Bayes, Arbre de décision) avec métriques complètes et (2) explorer des <strong>approches non supervisées</strong> (KMeans, clustering hiérarchique) et
+        une <strong>analyse temporelle</strong> basée sur les <code>scene_id</code> pour suivre l’activité par jour.
+      </p>
+    </section>
+
+    <section>
+      <h2>Implémentation</h2>
+      <ul>
+        <li><strong>Supervisé :</strong> CNN 20×20, MLP, ResNet18 (upscale 64×64), KNN (+PCA), Naive Bayes (+PCA), Arbre de décision (+Graphviz).</li>
+        <li><strong>Non supervisé :</strong> KMeans (courbe du coude), Clustering hiérarchique (Ward / Average + cosine), cartes de chaleur par cluster.</li>
+        <li><strong>Séries temporelles :</strong> comptage quotidien d’images <code>plane</code> par date extraite de <code>scene_id</code>, prévision <em>SARIMAX</em>.</li>
+        <li><strong>Orchestration :</strong> un <code>runner</code> unifié pour lancer chaque expérience en ligne de commande.</li>
+      </ul>
+      <p>
+        Pile technique : <code>Python</code>, <code>PyTorch</code>, <code>torchvision</code>, <code>scikit-learn</code>, <code>statsmodels</code>, <code>matplotlib</code>, <code>pandas</code>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Résultats & Visualisations</h2>
+      <p>Les visualisations suivantes illustrent les performances et les interprétations issues des différents modèles utilisés :</p>
+      <div class="results-grid">
+        <figure>
+          <img src="assets/images/roc_curve.png" alt="Courbe ROC du modèle CNN sur le jeu de test" />
+          <figcaption><strong>Courbe ROC</strong> – montre la capacité du modèle à distinguer les avions des non-avions selon le seuil de probabilité.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/confusion_matrix.png" alt="Matrice de confusion du modèle CNN" />
+          <figcaption><strong>Matrice de confusion</strong> – compare les prédictions du modèle aux vraies classes (TP, FP, TN, FN).</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/tree_plot.png" alt="Arbre de décision scikit-learn" />
+          <figcaption><strong>Arbre de décision</strong> – structure hiérarchique des règles apprises par le modèle supervisé pour séparer les classes.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/fi_heatmap_all.png" alt="Carte de chaleur des importances de caractéristiques" />
+          <figcaption><strong>Carte de chaleur des importances</strong> – identifie les zones de l’image les plus déterminantes pour la détection.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/pca_scatter_clusters.png" alt="Projection PCA 2D des clusters KMeans" />
+          <figcaption><strong>Clustering KMeans</strong> – projection PCA 2D montrant les regroupements d’images selon leurs similarités visuelles.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/images/forecast_series_global.png" alt="Prévision SARIMAX des séries temporelles" />
+          <figcaption><strong>Prévision SARIMAX</strong> – estimation de l’évolution quotidienne du nombre d’avions détectés sur les prochaines semaines.</figcaption>
+        </figure>
+      </div>
+      <p class="note">Toutes les figures sont générées automatiquement à partir des scripts Python (dossiers <code>runs*/</code>). Les images ont été uniformisées (300 × 220 px) pour une meilleure cohérence visuelle.</p>
+    </section>
+
+    <section>
+      <h2>Analyse & Conclusion</h2>
+      <p>
+        Les expériences menées sur le dataset <em>PlanesNet</em> démontrent l’efficacité des méthodes d’apprentissage supervisé pour la détection d’avions dans des images satellites. Les modèles <strong>CNN</strong> et <strong>ResNet18</strong> se démarquent par leur robustesse face aux variations visuelles, tandis que les méthodes plus simples comme <strong>KNN</strong> ou <strong>Naive Bayes</strong> restent pertinentes pour des déploiements légers. L’arbre de décision offre une interprétabilité précieuse permettant d’expliquer les décisions du modèle.
+      </p>
+      <p>
+        Les approches non supervisées (KMeans, Clustering hiérarchique) ont permis de mettre en évidence des regroupements naturels d’images, révélant différentes configurations d’avions et de zones environnantes. Enfin, l’analyse temporelle via <strong>SARIMAX</strong> apporte une dimension dynamique, ouvrant la voie à une surveillance automatisée du trafic aérien et à la prédiction de tendances.
+      </p>
+      <p>
+        En conclusion, cette étude prouve qu’une combinaison de <strong>méthodes supervisées, non supervisées et temporelles</strong> offre une vue complète du phénomène observé, tout en facilitant la <strong>prise de décision</strong> dans les domaines de la sécurité, de la gestion aéroportuaire et de la planification urbaine.
+      </p>
+    </section>
+
+    <section>
+      <h2>Cas d’usage & Prise de décision</h2>
+      <ul>
+        <li><strong>Surveillance d’activité</strong> : suivi de l’intensité sur des aéroports pour la planification.</li>
+        <li><strong>Aide opérationnelle</strong> : maintenance, affectation de ressources, optimisation des créneaux.</li>
+        <li><strong>Analyse temporelle</strong> : détection de tendances, pics d’activité, corrélations saisonnières.</li>
+        <li><strong>R&D</strong> : comparaison de modèles, interprétabilité (arbres, importances, heatmaps).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reproductibilité & Commandes</h2>
+      <p>
+        Un fichier pratique regroupe toutes les commandes pour lancer chaque algorithme et le <em>runner</em> : 
+        <a href="divers/planesnet_commands.txt" download>télécharger <code>planesnet_commands.txt</code></a>.
+      </p>
+      <details>
+        <summary>Exemple : entraîner le CNN</summary>
+        <pre><code>python planesnet_nn.py --json Data/planesnet/planesnet.json --model cnn --epochs 25 --batch-size 256</code></pre>
+      </details>
+      <details>
+        <summary>Exemple : lancer le runner unifié</summary>
+        <pre><code>python planesnet_runner.py --algo cnn --mode train --json Data/planesnet/planesnet.json</code></pre>
+      </details>
+    </section>
+
+    <section>
+      <h2>Dataset</h2>
+      <ul>
+        <li><strong>Taille</strong> : ~32 000 images 20×20 RGB, labels binaires.</li>
+        <li><strong>Formats</strong> : PNG nommées <code>{label}_{sceneid}_{lon}_{lat}.png</code> et JSON (<code>data</code>, <code>labels</code>, <code>scene_ids</code>, <code>locations</code>).</li>
+        <li><strong>Pré-traitements</strong> : normalisation [0,1], augmentations légères (flips, rotations 90°) pour les CNN.</li>
+      </ul>
+    </section>
+
+    <section class="project-github">
+      <h2>Code Source</h2>
+      <p>Scripts et pipeline complet disponibles sur GitHub :</p>
+      <a href="https://github.com/Davy-37/PlanesNet-Portfolio" target="_blank" rel="noopener" class="github-link">Accéder au dépôt GitHub</a>
+      
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Davy NZIENGUI — Tous droits réservés</p>
+  </footer>
+
+  <script src="assets/js/dynamic.js"></script>
+</body>
+</html>
