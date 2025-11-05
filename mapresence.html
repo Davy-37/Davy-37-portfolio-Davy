@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MaPrésence — Application Android de gestion des présences</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <ul id="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="projects.html">Projets</a></li>
+            <li><a href="skills.html">Compétences</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="index.html" class="brand">
+            <span>Davy NZIENGUI</span>
+            <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
+        </a>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+</nav>
+
+<main>
+    <h1>MaPrésence — Application Android de gestion des présences</h1>
+
+    <section>
+        <h2>Introduction</h2>
+        <p>
+            <strong>MaPrésence</strong> est une application Android éco-conçue qui centralise la gestion des présences
+            pour trois profils : <strong>étudiants</strong>, <strong>enseignants</strong> et <strong>administrateurs</strong>.
+            Elle permet la consultation des informations personnelles, l’enregistrement des présences, la création des cours/séances
+            et la génération de <strong>statistiques d’assiduité</strong> pour offrir une vision globale et exploitable
+            de la présence. Le développement a été orienté <strong>performance &amp; sobriété</strong> : thème sombre,
+            choix de types de données économes, réduction des transitions coûteuses et profilage mémoire.
+        </p>
+        <ul class="project-meta">
+            <li><strong>Équipe :</strong> Studio404</li>
+            <li><strong>Stack :</strong> Android (Java, XML), ORM Room, SQLite</li>
+            <li><strong>Sécurité :</strong> Hash Bcrypt des mots de passe</li>
+            <li><strong>Année :</strong> 2025</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>I. Fonctionnalités par rôle</h2>
+
+        <h3>Barre de navigation commune</h3>
+        <p>
+            Une barre de navigation inférieure permet d’accéder à l’accueil, aux notifications, à la liste des absences
+            (ou matières), et à la <em>déconnexion</em> (retour à la page de login).
+        </p>
+
+        <h3>Étudiant</h3>
+        <ul>
+            <li>Consultation des <strong>données personnelles</strong>.</li>
+            <li>Accès aux <strong>notifications</strong> (enseignants/administration).</li>
+            <li>Liste complète des <strong>absences par matière</strong>, avec <strong>filtrage</strong> par état (présent/absent).</li>
+        </ul>
+
+        <h3>Enseignant</h3>
+        <ul>
+            <li>Consultation des données personnelles et notifications.</li>
+            <li>Gestion du <strong>planning</strong> : créer, modifier, supprimer des <strong>séances</strong>.</li>
+            <li><strong>Appel</strong> des étudiants par séance (présent/absent).</li>
+            <li>Consultation des <strong>matières enseignées</strong> et <strong>statistiques d’assiduité</strong>.</li>
+        </ul>
+
+        <h3>Administrateur</h3>
+        <ul>
+            <li>Accueil : informations personnelles, liste des matières, <strong>aperçu des absences</strong>.</li>
+            <li>Menu flottant (<strong>+</strong>) : <strong>créer un utilisateur</strong>, <strong>créer un cours</strong>, <strong>créer une séance</strong>, <strong>consulter les statistiques</strong>.</li>
+            <li>Écrans dédiés : création/modification/suppression des entités (utilisateur, cours, séance).</li>
+            <li>Page <strong>Statistiques</strong> : graphiques (barres) des absences par matière.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>II. Architecture des données (Modèle relationnel)</h2>
+        <p>
+            Le modèle de données est centré sur les entités <em>Utilisateur</em>, <em>Cours</em>, <em>Seance</em> et <em>Presence</em>,
+            avec des relations adaptées à la réalité académique (enseignants ↔ cours, étudiants ↔ séances, etc.).
+        </p>
+
+        <h3>Entités &amp; attributs</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Entité</th>
+                    <th>Attributs</th>
+                    <th>Remarques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Utilisateur</strong></td>
+                    <td>
+                        id:int, nom:String, prenom:String, email:String, motDePasse:String (hashé),
+                        role:short (1=prof, 2=étudiant, 3=admin)
+                    </td>
+                    <td>Rôles numérisés (économie mémoire vs String). Hash via <code>at.favre.lib:bcrypt:0.9.0</code>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Cours</strong></td>
+                    <td>id:int, nom:String, dateDebut:String, dateFin:String</td>
+                    <td>Un cours regroupe plusieurs séances, enseigné par un ou plusieurs professeurs.</td>
+                </tr>
+                <tr>
+                    <td><strong>Seance</strong></td>
+                    <td>id:int, idCours:int (FK), dateDebut:String, dateFin:String</td>
+                    <td>Chaque séance appartient à un unique cours.</td>
+                </tr>
+                <tr>
+                    <td><strong>Presence</strong></td>
+                    <td>utilisateurId:int (FK), seanceId:int (FK), etat:boolean</td>
+                    <td>Présent (<code>true</code>) / Absent (<code>false</code>).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Relations clés</h3>
+        <ul>
+            <li><strong>Enseigne</strong> : Utilisateur (prof) ↔ Cours (1 → 0..n)</li>
+            <li><strong>Participe</strong> : Utilisateur (étudiant) ↔ Seance (n ↔ n)</li>
+            <li><strong>EstPrésent</strong> : Utilisateur ↔ Seance </li>
+            <li><strong>Appartient</strong> : Seance → Cours (1 → 1)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>III. Persistance &amp; accès aux données (Room)</h2>
+        <p>
+            L’application utilise <strong>Room</strong> (ORM Android) pour mapper les tables SQLite à des <em>entités</em> Java,
+            et des <em>DAO</em> (Data Access Objects) pour des accès typés et sûrs. Les requêtes SQLite sont exprimées via
+            des annotations, réduisant le code répétitif et les erreurs.
+        </p>
+        <ul>
+            <li><strong>Entities</strong> : classes annotées pour <em>Utilisateur</em>, <em>Cours</em>, <em>Seance</em>, <em>Presence</em>.</li>
+            <li><strong>DAO</strong> : interfaces annotées (CRUD, requêtes filtrées, jointures pour les statistiques d’absences par matière).</li>
+            <li><strong>Database</strong> : singleton <code>@Database</code> exposant les DAO.</li>
+            <li><strong>Séparation des responsabilités</strong> : UI ↔ ViewModel/UseCases ↔ DAO ↔ SQLite.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>IV. Sécurité</h2>
+        <ul>
+            <li><strong>Hash des mots de passe</strong> avec <code>BCrypt</code> via la librairie <code>at.favre.lib:bcrypt:0.9.0</code>.</li>
+            <li><strong>Rôles</strong> encodés sur type numérique (<code>short</code>) pour limiter exposition et surcoût mémoire.</li>
+            <li>Validation côté UI et côté accès données (filtrage par rôle, restrictions d’actions).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>V. Éco-conception &amp; performance</h2>
+        <h3>Choix colorimétriques</h3>
+        <p>
+            Thème <strong>sombre</strong> (noir/vert) pour diminuer la consommation énergétique des écrans.
+        </p>
+
+        <h3>Types de données</h3>
+        <p>
+            Passage de <code>String</code> à <code>byte/short</code> pour le rôle afin d’optimiser l’empreinte mémoire
+            (vs. encodage UTF-8 des chaînes).
+        </p>
+
+        <h3>Minimisation des transitions</h3>
+        <p>
+            Architecture en <strong>hub centralisé</strong> (accès direct aux fonctionnalités depuis l’accueil adapté au rôle),
+            réduisant le temps d’usage, les requêtes et les transitions coûteuses.
+        </p>
+
+        <h3>Profilage</h3>
+        <p>
+            Utilisation de <strong>Android Studio Profiler</strong> pour observer la RAM/CPU lors des scénarios usuels
+            (login → liste d’appel → validation) et supprimer les pics superflus.
+        </p>
+    </section>
+
+    <section>
+        <h2>VI. Galerie (aperçu écrans)</h2>
+        <p>Quelques écrans clés : accueil (par rôle), saisie de présence, statistiques.</p>
+        <div class="project-gallery" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+            <img src="assets/images/mapresence_screen_1.jpg" alt="Accueil par rôle" loading="lazy" style="width:100%;height:auto;border-radius:10px;">
+            <img src="assets/images/mapresence_screen_3.jpg" alt="Saisie de présence (appel)" loading="lazy" style="width:100%;height:auto;border-radius:10px;">
+            <img src="assets/images/mapresence_screen_4.jpg" alt="Statistiques d'assiduité" loading="lazy" style="width:100%;height:auto;border-radius:10px;">
+        </div>
+    </section>
+
+    <section class="project-github">
+        <h2>Ressources &amp; livrables</h2>
+        <ul>
+            <li>
+                <strong>Poster du projet :</strong>
+                <a href="assets/docs/Poster_Groupe3.pdf" target="_blank" class="github-link">ouvrir le poster (PDF)</a>
+                <span style="font-size:0.9rem;opacity:0.85;"></span>
+            </li>
+            <li>
+                <strong>Fichier APK :</strong>
+                <a href="assets/docs/Ma_Presence_Groupe3.apk" target="_blank" class="github-link">Télécharger l'APK</a>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>VII. Conclusion</h2>
+        <p>
+            <strong>MaPrésence</strong> montre qu’une application mobile peut concilier <strong>fonctionnalité</strong> et
+            <strong>responsabilité environnementale</strong>. Les besoins des trois profils utilisateurs sont couverts
+            (consultation, enregistrement, pilotage), avec un soin particulier apporté à la <strong>sobriété</strong> de
+            l’interface et à l’<strong>optimisation</strong> des accès aux données via Room/SQLite. Le résultat :
+            une solution <strong>fiable</strong>, <strong>performante</strong> et <strong>durable</strong> pour la gestion des présences.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
+</footer>
+
+<script src="assets/js/dynamic.js"></script>
+</body>
+</html>
