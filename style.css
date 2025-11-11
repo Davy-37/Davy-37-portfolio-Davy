@@ -555,3 +555,36 @@ table tbody tr:nth-child(even) {
     white-space: nowrap;
 }
 
+
+.contact-info { display:flex; justify-content:center; margin-top:30px; }
+
+.contact-info ul {
+  display:flex; flex-direction:column; align-items:center;
+  gap:24px; list-style:none; padding:0; margin:0;
+}
+
+.contact-info li {
+  display:flex; flex-direction:column; align-items:center;
+  width:260px; padding:20px; border-radius:15px;
+  background:#f5f8ff; box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.contact-info li img.contact-icon,
+.contact-info .contact-icon {
+  width:4rem !important;     /* ≈64px */
+  height:4rem !important;    /* carré */
+  aspect-ratio:1/1;
+  object-fit:contain;
+  display:block;
+  margin-bottom:10px;
+  flex-shrink:0;
+}
+
+.contact-info strong { color:#003366; font-size:1.1em; margin-bottom:6px; }
+.contact-info a { color:#003366; font-weight:600; text-decoration:none; text-align:center; }
+.contact-info a:hover { text-decoration:underline; }
+
+@media (max-width:600px){
+  .contact-info li { width:90%; }
+  .contact-info li img.contact-icon { width:3.25rem !important; height:3.25rem !important; }
+}

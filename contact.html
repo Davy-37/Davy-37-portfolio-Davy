@@ -1,63 +1,72 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact - Davy NZIENGUI</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contact - Davy NZIENGUI</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/images/favicon.png" type="image/png">
 
 
-</head>
-<body>
+    </head>
+    <body>
 
-    <nav>
-        <div class="nav-container">
-            <ul id="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="about.html">À propos</a></li>
-                <li><a href="projects.html">Projets</a></li>
-                <li><a href="skills.html">Compétences</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-    
-            <a href="index.html" class="brand">
-                <span>Davy NZIENGUI</span>
-                <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
-            </a>
-    
-            <div class="hamburger" id="hamburger">&#9776;</div>
-        </div>
-    </nav>
-    
+        <nav>
+            <div class="nav-container">
+                <ul id="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="projects.html">Projets</a></li>
+                    <li><a href="skills.html">Compétences</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
 
-    <main>
-        <h1>Contactez-moi</h1>
-        <p>Envie d'échanger ou de collaborer ? N'hésitez pas à me contacter :</p>
+                <a href="index.html" class="brand">
+                    <span>Davy NZIENGUI</span>
+                    <img src="assets/images/portrait.jpg" alt="Davy NZIENGUI">
+                </a>
 
-        <form action="mailto:nzienguirock2004@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
+                <div class="hamburger" id="hamburger">&#9776;</div>
+            </div>
+        </nav>
 
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
+        <main class="contact-page">
+            <h1>Contactez-moi</h1>
+            <p>Envie d'échanger, de collaborer ou simplement de discuter ? Voici comment me joindre :</p>
 
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <div class="contact-info">
+                <ul>
+                    <li>
+                        <img src="assets/images/mail.png" alt="Email" class="contact-icon" width="64" height="64" loading="lazy">
+                        <strong>Email</strong>
+                        <a href="mailto:nzienguirock2004@gmail.com">nzienguirock2004@gmail.com</a>
+                    </li>
 
-            <button type="submit">Envoyer</button>
-        </form>
+                    <li>
+                        <img src="assets/images/linkedin.png" alt="LinkedIn" class="contact-icon" width="64" height="64" loading="lazy">
+                        <strong>LinkedIn</strong>
+                        <a href="https://www.linkedin.com/in/davy-huffel-nziengui-538353321/" target="_blank">linkedin.com/in/davy-huffel-nziengui</a>
+                    </li>
 
-        <ul>
-            <li>Email : <strong>nzienguirock2004@gmail.com</strong></li>
-            <li>LinkedIn : <a href="https://www.linkedin.com/in/davy-huffel-nziengui-538353321/" target="_blank">linkedin.com/in/davy-huffel-nziengui</a></li>
-        </ul>
-    </main>
+                    <li>
+                        <img src="assets/images/github.png" alt="GitHub" class="contact-icon" width="64" height="64" loading="lazy">
+                        <strong>GitHub</strong>
+                        <a href="https://github.com/Davy-37" target="_blank">github.com/Davy-37</a>
+                    </li>
+                </ul>
+            </div>
 
-    <footer>
-        <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
-    </footer>
 
-    <script src="assets/js/dynamic.js"></script>
-</body>
+            <div class="contact-note">
+                <p> Vous pouvez aussi me contacter directement par mail ou via LinkedIn pour toute opportunité ou projet collaboratif.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Davy NZIENGUI - Tous droits réservés</p>
+        </footer>
+
+        <script src="assets/js/dynamic.js"></script>
+    </body>
+
 </html>
