@@ -58,121 +58,100 @@
     </div>
   </nav>
 
-  <main>
-    <header class="page-hero">
-      <h1>Détection d’Avions sur Imagerie Satellite (PlanesNet)</h1>
-      <p class="subtitle">De la classification supervisée aux analyses non-supervisées et séries temporelles</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">PyTorch / scikit-learn</span>
-        <span class="tag">Vision par ordinateur</span>
-        <span class="tag">MLOps léger</span>
-      </div>
-    </header>
-
-    <section>
-      <h2>Présentation du Projet</h2>
-      <p>
-        Ce projet applique plusieurs méthodes d’apprentissage automatique pour <strong>détecter la présence d’avions</strong> dans des images satellites
-        issues du dataset <em>Planes in Satellite Imagery (PlanesNet)</em>. Les images (20×20 RGB) sont labellisées <code>plane</code> ou <code>no-plane</code> et
-        sont également fournies en JSON (vecteurs de 1200 pixels). L’objectif est double : (1) construire un <strong>socle de modèles supervisés</strong> (CNN, KNN,
-        Naive Bayes, Arbre de décision) avec métriques complètes et (2) explorer des <strong>approches non supervisées</strong> (KMeans, clustering hiérarchique) et
-        une <strong>analyse temporelle</strong> basée sur les <code>scene_id</code> pour suivre l’activité par jour.
-      </p>
-    </section>
-
-    <section>
-      <h2>Implémentation</h2>
-      <ul>
-        <li><strong>Supervisé :</strong> CNN 20×20, MLP, ResNet18 (upscale 64×64), KNN (+PCA), Naive Bayes (+PCA), Arbre de décision (+Graphviz).</li>
-        <li><strong>Non supervisé :</strong> KMeans (courbe du coude), Clustering hiérarchique (Ward / Average + cosine), cartes de chaleur par cluster.</li>
-        <li><strong>Séries temporelles :</strong> comptage quotidien d’images <code>plane</code> par date extraite de <code>scene_id</code>, prévision <em>SARIMAX</em>.</li>
-        <li><strong>Orchestration :</strong> un <code>runner</code> unifié pour lancer chaque expérience en ligne de commande.</li>
-      </ul>
-      <p>
-        Pile technique : <code>Python</code>, <code>PyTorch</code>, <code>torchvision</code>, <code>scikit-learn</code>, <code>statsmodels</code>, <code>matplotlib</code>, <code>pandas</code>.
-      </p>
-    </section>
-
-    <section>
-      <h2>Résultats & Visualisations</h2>
-      <p>Les visualisations suivantes illustrent les performances et les interprétations issues des différents modèles utilisés :</p>
-      <div class="results-grid">
-        <figure>
-          <img src="assets/images/roc_curve.png" alt="Courbe ROC du modèle CNN sur le jeu de test" />
-          <figcaption><strong>Courbe ROC</strong> – montre la capacité du modèle à distinguer les avions des non-avions selon le seuil de probabilité.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/confusion_matrix.png" alt="Matrice de confusion du modèle CNN" />
-          <figcaption><strong>Matrice de confusion</strong> – compare les prédictions du modèle aux vraies classes (TP, FP, TN, FN).</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/tree_plot.png" alt="Arbre de décision scikit-learn" />
-          <figcaption><strong>Arbre de décision</strong> – structure hiérarchique des règles apprises par le modèle supervisé pour séparer les classes.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/fi_heatmap_all.png" alt="Carte de chaleur des importances de caractéristiques" />
-          <figcaption><strong>Carte de chaleur des importances</strong> – identifie les zones de l’image les plus déterminantes pour la détection.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/pca_scatter_clusters.png" alt="Projection PCA 2D des clusters KMeans" />
-          <figcaption><strong>Clustering KMeans</strong> – projection PCA 2D montrant les regroupements d’images selon leurs similarités visuelles.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/forecast_series_global.png" alt="Prévision SARIMAX des séries temporelles" />
-          <figcaption><strong>Prévision SARIMAX</strong> – estimation de l’évolution quotidienne du nombre d’avions détectés sur les prochaines semaines.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    
-    <section>
-      <h2>Analyse & Conclusion</h2>
-      <p>
-        Les expériences menées sur le dataset <em>PlanesNet</em> démontrent l’efficacité des méthodes d’apprentissage supervisé pour la détection d’avions dans des images satellites. Les modèles <strong>CNN</strong> et <strong>ResNet18</strong> se démarquent par leur robustesse face aux variations visuelles, tandis que les méthodes plus simples comme <strong>KNN</strong> ou <strong>Naive Bayes</strong> restent pertinentes pour des déploiements légers. L’arbre de décision offre une interprétabilité précieuse permettant d’expliquer les décisions du modèle.
-      </p>
-      <p>
-        Les approches non supervisées (KMeans, Clustering hiérarchique) ont permis de mettre en évidence des regroupements naturels d’images, révélant différentes configurations d’avions et de zones environnantes. Enfin, l’analyse temporelle via <strong>SARIMAX</strong> apporte une dimension dynamique, ouvrant la voie à une surveillance automatisée du trafic aérien et à la prédiction de tendances.
-      </p>
-      <p>
-        En conclusion, cette étude prouve qu’une combinaison de <strong>méthodes supervisées, non supervisées et temporelles</strong> offre une vue complète du phénomène observé, tout en facilitant la <strong>prise de décision</strong> dans les domaines de la sécurité, de la gestion aéroportuaire et de la planification urbaine.
-      </p>
-    </section>
-
-    <section>
-      <h2>Cas d’usage & Prise de décision</h2>
-      <ul>
-        <li><strong>Surveillance d’activité</strong> : suivi de l’intensité sur des aéroports pour la planification.</li>
-        <li><strong>Aide opérationnelle</strong> : maintenance, affectation de ressources, optimisation des créneaux.</li>
-        <li><strong>Analyse temporelle</strong> : détection de tendances, pics d’activité, corrélations saisonnières.</li>
-        <li><strong>R&D</strong> : comparaison de modèles, interprétabilité (arbres, importances, heatmaps).</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Reproductibilité & Commandes</h2>
-      <p>
-        Un fichier pratique regroupe toutes les commandes pour lancer chaque algorithme et le <em>runner</em> : 
-        <a href="assets/divers/planesnet_commands.txt" download>télécharger <code>planesnet_commands.txt</code></a>.
-      </p>
-      <details>
-        <summary>Exemple : entraîner le CNN</summary>
-        <pre><code>python planesnet_nn.py --json Data/planesnet/planesnet.json --model cnn --epochs 25 --batch-size 256</code></pre>
-      </details>
-      <details>
-        <summary>Exemple : lancer le runner unifié</summary>
-        <pre><code>python planesnet_runner.py --algo cnn --mode train --json Data/planesnet/planesnet.json</code></pre>
-      </details>
-    </section>
-
-    <section>
-      <h2>Dataset</h2>
-      <ul>
-        <li><strong>Taille</strong> : ~32 000 images 20×20 RGB, labels binaires.</li>
-        <li><strong>Formats</strong> : PNG nommées <code>{label}_{sceneid}_{lon}_{lat}.png</code> et JSON (<code>data</code>, <code>labels</code>, <code>scene_ids</code>, <code>locations</code>).</li>
-        <li><strong>Pré-traitements</strong> : normalisation [0,1], augmentations légères (flips, rotations 90°) pour les CNN.</li>
-      </ul>
-    </section>
+<main>
+  <header class="page-hero">
+    <h1>Détection d’Avions sur Imagerie Satellite (PlanesNet)</h1>
+    <p class="subtitle">Classification supervisée : réseaux de neurones et algorithmes classiques</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">PyTorch / scikit-learn</span>
+      <span class="tag">Vision par ordinateur</span>
+      <span class="tag">MLOps léger</span>
+    </div>
+  </header>
+  <section>
+    <h2>Présentation du Projet</h2>
+    <p>
+      Ce projet applique plusieurs méthodes d’apprentissage supervisé pour <strong>détecter la présence d’avions</strong> dans des images satellites
+      issues du dataset <em>Planes in Satellite Imagery (PlanesNet)</em>. Les images (20×20 RGB) sont labellisées plane ou no-plane et
+      sont fournies en JSON (vecteurs de 1200 pixels). L’objectif est de construire un <strong>socle de modèles de classification</strong> (CNN, MLP, ResNet18, KNN,
+      Naive Bayes, arbre de décision) avec métriques complètes (ROC-AUC, matrices de confusion, courbes précision) et de les comparer pour
+      faciliter le choix et le déploiement selon le contexte.
+    </p>
+  </section>
+  <section>
+    <h2>Implémentation</h2>
+    <ul>
+      <li><strong>Réseaux de neurones :</strong> CNN 20×20 (baseline), MLP sur vecteurs aplatis, ResNet18 avec upscale 64×64 (PyTorch / torchvision).</li>
+      <li><strong>Algorithmes classiques :</strong> KNN avec option PCA et grid search, Naive Bayes (GaussianNB) avec PCA, arbre de décision (+ export Graphviz).</li>
+      <li><strong>Orchestration :</strong> un runner unifié (planesnet_runner.py) pour lancer chaque expérience en ligne de commande.</li>
+    </ul>
+    <p>
+      Pile technique : Python, PyTorch, torchvision, scikit-learn, matplotlib, joblib.
+    </p>
+  </section>
+  <section>
+    <h2>Résultats & Visualisations</h2>
+    <p>Les visualisations suivantes illustrent les performances et l’interprétabilité des modèles supervisés :</p>
+    <div class="results-grid">
+      <figure>
+        <img src="assets/images/roc_curve.png" alt="Courbe ROC du modèle CNN sur le jeu de test" />
+        <figcaption><strong>Courbe ROC</strong> – capacité du modèle à distinguer avions et non-avions selon le seuil de probabilité.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/confusion_matrix.png" alt="Matrice de confusion du modèle CNN" />
+        <figcaption><strong>Matrice de confusion</strong> – comparaison des prédictions aux vraies classes (TP, FP, TN, FN).</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/tree_plot.png" alt="Arbre de décision scikit-learn" />
+        <figcaption><strong>Arbre de décision</strong> – structure hiérarchique des règles apprises pour séparer les classes.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/fi_heatmap_all.png" alt="Carte de chaleur des importances de caractéristiques" />
+        <figcaption><strong>Carte de chaleur des importances</strong> – zones de l’image les plus déterminantes pour la détection (arbre de décision).</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section>
+    <h2>Analyse & Conclusion</h2>
+    <p>
+      Les expériences sur le dataset <em>PlanesNet</em> montrent l’efficacité des méthodes supervisées pour la détection d’avions en imagerie satellite. Les modèles <strong>CNN</strong> et <strong>ResNet18</strong> se démarquent par leur robustesse face aux variations visuelles, tandis que <strong>KNN</strong> et <strong>Naive Bayes</strong> restent pertinents pour des déploiements légers ou des bases de référence. L’<strong>arbre de décision</strong> apporte une interprétabilité directe et des cartes d’importance des pixels, utiles pour expliquer les décisions.
+    </p>
+    <p>
+      En conclusion, la combinaison de <strong>réseaux profonds et d’algorithmes classiques</strong> offre une approche complète et reproductible pour la <strong>classification binaire</strong> (avion / non-avion), avec des métriques et visualisations adaptées à la <strong>prise de décision</strong> (sécurité, gestion aéroportuaire, R&D).
+    </p>
+  </section>
+  <section>
+    <h2>Cas d’usage & Prise de décision</h2>
+    <ul>
+      <li><strong>Surveillance d’activité</strong> : détection d’avions sur zones sensibles ou aéroports pour la planification.</li>
+      <li><strong>Aide opérationnelle</strong> : maintenance, affectation de ressources, optimisation des créneaux.</li>
+      <li><strong>R&D et comparaison de modèles</strong> : benchmark CNN / MLP / ResNet vs KNN / Bayes / arbre, interprétabilité (arbres, heatmaps).</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Reproductibilité & Commandes</h2>
+    <p>
+      Un fichier regroupe les commandes pour lancer chaque algorithme et le <em>runner</em> :
+      <a href="assets/divers/planesnet_commands.txt" download>télécharger planesnet_commands.txt</a>.
+    </p>
+    <details>
+      <summary>Exemple : entraîner le CNN</summary>
+      <pre>python planesnet_cnn.py --json Data/planesnet/planesnet.json --model cnn --epochs 25 --batch-size 256</pre>
+    </details>
+    <details>
+      <summary>Exemple : lancer le runner unifié</summary>
+      <pre>python planesnet_runner.py --algo cnn --mode train --json Data/planesnet/planesnet.json</pre>
+    </details>
+  </section>
+  <section>
+    <h2>Dataset</h2>
+    <ul>
+      <li><strong>Taille</strong> : ~32 000 images 20×20 RGB, labels binaires.</li>
+      <li><strong>Formats</strong> : PNG nommées {label}_{sceneid}_{lon}_{lat}.png et JSON (data, labels, scene_ids, locations).</li>
+      <li><strong>Pré-traitements</strong> : normalisation [0,1], augmentations légères (flips, rotations 90°) pour les CNN.</li>
+    </ul>
+  </section>
 
     <section class="project-github">
       <h2>Code Source</h2>
